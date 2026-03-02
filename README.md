@@ -47,8 +47,8 @@ A production-ready full-stack SaaS platform with:
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/ai-saas-v1.git
-   cd ai-saas-v1
+   git clone https://github.com/yourusername/imprompt-generator-app-v1.git
+   cd imprompt-generator-app-v1
    ```
 
 2. **Copy environment template**
@@ -184,11 +184,11 @@ docker-compose -f docker-compose.dev.yml up -d
 1. **Prepare your server**
    ```bash
    # Create application directory
-   mkdir -p /opt/ai-saas
-   cd /opt/ai-saas
+   mkdir -p /opt/imprompt-generator-app
+   cd /opt/imprompt-generator-app
    
    # Clone repository
-   git clone https://github.com/yourusername/ai-saas-v1.git .
+   git clone https://github.com/yourusername/imprompt-generator-app-v1.git .
    ```
 
 2. **Configure production environment**
@@ -242,20 +242,20 @@ docker-compose -f docker-compose.dev.yml up -d
 
 ```bash
 # Create namespace
-kubectl create namespace ai-saas
+kubectl create namespace imprompt-generator-app
 
 # Create secrets
-kubectl create secret generic ai-saas-secrets \
+kubectl create secret generic imprompt-generator-app-secrets \
   --from-literal=jwt-secret=$(openssl rand -hex 32) \
   --from-literal=db-password=$(openssl rand -base64 32) \
-  -n ai-saas
+  -n imprompt-generator-app
 
 # Apply manifests
-kubectl apply -f infrastructure/k8s/ -n ai-saas
+kubectl apply -f infrastructure/k8s/ -n imprompt-generator-app
 
 # Verify deployment
-kubectl get pods -n ai-saas
-kubectl get svc -n ai-saas
+kubectl get pods -n imprompt-generator-app
+kubectl get svc -n imprompt-generator-app
 ```
 
 ### Option 3: Managed Services (AWS, GCP, Azure)
@@ -296,7 +296,7 @@ docker-compose -f docker-compose.prod.yml exec postgres \
   pg_dump -U ai aisaas > backup-$(date +%Y%m%d).sql
 
 # Automated: Setup cron job
-# 0 2 * * * docker-compose -f /opt/ai-saas/docker-compose.prod.yml exec postgres pg_dump -U ai aisaas > /backups/aisaas-$(date +\%Y\%m\%d).sql
+# 0 2 * * * docker-compose -f /opt/imprompt-generator-app/docker-compose.prod.yml exec postgres pg_dump -U ai aisaas > /backups/aisaas-$(date +\%Y\%m\%d).sql
 ```
 
 ---
@@ -304,7 +304,7 @@ docker-compose -f docker-compose.prod.yml exec postgres \
 ## Project Structure
 
 ```
-ai-saas-v1/
+imprompt-generator-app-v1/
 ├── apps/
 │   ├── api-gateway/              # Express.js API server
 │   │   ├── server.js             # Main application

@@ -36,7 +36,7 @@ services:
       ollama:
         condition: service_started
     networks:
-      - ai-saas-network
+      - imprompt-generator-app-network
     logging:
       driver: "json-file"
       options:
@@ -68,7 +68,7 @@ services:
       ollama:
         condition: service_started
     networks:
-      - ai-saas-network
+      - imprompt-generator-app-network
     logging:
       driver: "json-file"
       options:
@@ -91,7 +91,7 @@ services:
       - postgres-data:/var/lib/postgresql/data
       - ./database/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql
     networks:
-      - ai-saas-network
+      - imprompt-generator-app-network
     logging:
       driver: "json-file"
       options:
@@ -114,7 +114,7 @@ services:
     volumes:
       - redis-data:/data
     networks:
-      - ai-saas-network
+      - imprompt-generator-app-network
     logging:
       driver: "json-file"
       options:
@@ -136,7 +136,7 @@ services:
     volumes:
       - ollama-data:/root/.ollama
     networks:
-      - ai-saas-network
+      - imprompt-generator-app-network
     logging:
       driver: "json-file"
       options:
@@ -154,5 +154,5 @@ volumes:
     driver: local
 
 networks:
-  ai-saas-network:
+  imprompt-generator-app-network:
     driver: bridge

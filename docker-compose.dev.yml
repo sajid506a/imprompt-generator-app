@@ -38,7 +38,7 @@ services:
       - ./apps/api-gateway:/app
       - /app/node_modules
     networks:
-      - ai-saas-network
+      - imprompt-generator-app-network
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
       interval: 30s
@@ -67,7 +67,7 @@ services:
       - ./apps/appsworker-agents:/app
       - /app/node_modules
     networks:
-      - ai-saas-network
+      - imprompt-generator-app-network
 
   # PostgreSQL Database
   postgres:
@@ -84,7 +84,7 @@ services:
       - postgres-data:/var/lib/postgresql/data
       - ./database/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql
     networks:
-      - ai-saas-network
+      - imprompt-generator-app-network
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ai"]
       interval: 10s
@@ -100,7 +100,7 @@ services:
     volumes:
       - redis-data:/data
     networks:
-      - ai-saas-network
+      - imprompt-generator-app-network
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 10s
@@ -116,7 +116,7 @@ services:
     volumes:
       - ollama-data:/root/.ollama
     networks:
-      - ai-saas-network
+      - imprompt-generator-app-network
     environment:
       OLLAMA_HOST: 0.0.0.0:11434
 
@@ -126,5 +126,5 @@ volumes:
   ollama-data:
 
 networks:
-  ai-saas-network:
+  imprompt-generator-app-network:
     driver: bridge

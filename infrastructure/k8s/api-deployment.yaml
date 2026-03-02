@@ -15,6 +15,6 @@ spec:
   spec:
    containers:
    - name: api
-     image: ai-saas-api
+     image: imprompt-generator-app-api
      ports:
      - containerPort: 3000

@@ -155,7 +155,7 @@ worker-2:
   build:
     context: ./apps/appsworker-agents
     dockerfile: Dockerfile
-  container_name: ai-saas-worker-2
+  container_name: imprompt-generator-app-worker-2
   restart: always
   environment:
     NODE_ENV: production
@@ -165,13 +165,13 @@ worker-2:
     redis:
       condition: service_healthy
   networks:
-    - ai-saas-network
+    - imprompt-generator-app-network
 
 worker-3:
   build:
     context: ./apps/appsworker-agents
     dockerfile: Dockerfile
-  container_name: ai-saas-worker-3
+  container_name: imprompt-generator-app-worker-3
   restart: always
   environment:
     NODE_ENV: production
@@ -181,7 +181,7 @@ worker-3:
     redis:
       condition: service_healthy
   networks:
-    - ai-saas-network
+    - imprompt-generator-app-network
 
 # Then restart
 docker-compose -f docker-compose.prod.yml up -d
@@ -277,7 +277,7 @@ TIMESTAMP=$(date +%Y%m%d-%H%M%S)
 BACKUP_FILE="$BACKUP_DIR/aisaas-$TIMESTAMP.sql"
 
 # Create backup
-docker-compose -f /opt/ai-saas/docker-compose.prod.yml exec -T postgres \
+docker-compose -f /opt/imprompt-generator-app/docker-compose.prod.yml exec -T postgres \
   pg_dump -U ai -d $DB_NAME > $BACKUP_FILE
 
 # Compress
